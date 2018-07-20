@@ -1,3 +1,7 @@
+# Introduction
+
+A desktop web application where a user can compare drug prices among the major three pharmacies (Walmart, CVS, Walgreen) along GoodRx discount program. User can use this app either by signing in or not signing in. Once signing up with FHIR ID , users can also get access to their medical history stored in the FHIR server to get the information of their prescribed drugs. Besides, user can view their personal information and search history.
+
 # Installation
 
 ## Run Application via Docker
