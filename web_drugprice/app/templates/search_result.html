@@ -1,0 +1,154 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>search results</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='search_result.css') }}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="/static/jspkg-archive/jquery.dynatable.js"></script>
+    <style src="/static/jspkg-archive/jquery.dynatable.css"></style>
+    <script>
+        $(document).ready( function() {
+        $('#combinedTable').dynatable({
+            features: {
+                paginate: false,
+                search: false,
+                recordCount: false
+            },
+            table: {
+                defaultColumnIdStyle: 'lowercase'
+            },
+            dataset: {
+                records: {{ combined_drug_list | safe }}
+            }
+        })
+
+    });
+    </script>
+    <script>
+    $(function(){
+        $("div.combinedPriceDiv").hide();
+        $("a.combinedPriceTopLink").click(function(){
+            $("div.combinedPriceDiv").show();
+            $("div.individualPriceDiv").hide();
+        });
+        $("a.combinedPriceTopPartSelectedLink").click(function(){
+            $("div.combinedPriceDiv").hide();
+            $("div.individualPriceDiv").show();
+        })
+    })
+    </script>
+
+    <script>
+        document.write=function(s){
+            var scripts = document.getElementsByTagName('script');
+            var lastScript = scripts[scripts.length-1];
+            lastScript.insertAdjacentHTML("beforebegin", s);
+        }
+    </script>
+</head>
+<body>
+<header>
+    <h1 style="text-align:center; padding-top: 35px;"><strong>FireRx</strong></h1>
+    {% if login_success == 'True' or register_success == 'True'%}
+    <div style="text-align:right; font-size:0.6em;">
+        <span>Welcome {{ fullname }} ! <a  href="{{ url_for('main') }}" style="margin-left:30px;">Logout</a></span>
+    </div>
+    {% else %}
+    <div style="text-align:right; font-size:0.6em;">
+        <a href="{{ url_for('login') }}" style="margin-right:10px;">Login</a>
+        <a href="{{ url_for('registration')}}">Register </a>
+    </div>
+    {% endif %}
+</header>
+<div class="gap">
+    <p></p>
+</div>
+<div class="bottomFrame">
+    <div class="individualPriceDiv">
+        <div class="individucalPriceTopPart">
+        <span class="drugPriceSelection">
+            <a class="individualPriceTopPartSelectedLink selected" href="#nowhere">Individual Drug Price</a>
+            <a class="combinedPriceTopLink" href="#nowhere">Combined Drug Price</a>
+        </span>
+            <span class="float-right">
+            {% if login_success == 'True' or register_success == 'True'%}
+            <a href="{{ url_for('main') }}">Start a new search</a>
+            {% else %}
+            <a href="{{ url_for('index') }}">Start a new search</a>
+            {% endif %}
+        </span>
+        </div>
+        <div id="individualContent">
+            <script>
+                $(document).ready( function() {
+                var i, breakObj;
+                var data = {{ individual_drug_list | safe}};
+                for (i in data) {
+                    document.write("<h3>"+data[i].drug+"</h3><br/>"+
+                        '<table class="table table-striped" id="individualTable'+i+'">'+
+                        "    <thead>\n" +
+                        "    <th data-dynatable-column='name'>Name</th>\n" +
+                        "    <th data-dynatable-column='originalPrice'>Original Price</th>\n" +
+                        "    <th data-dynatable-column='withCoupon'>With Coupon</th>\n" +
+                        "    </thead>\n" +
+                        "    <tbody>\n" +
+                        "    </tbody>\n" +
+                        "</table>")
+                    breakObj=data[i].pharmacy
+                    $('#individualTable'+i).dynatable({
+                        features: {
+                            paginate: false,
+                            search: false,
+                            recordCount: false
+                        },
+                        table: {
+                            defaultColumnIdStyle: 'lowercase'
+                        },
+                        dataset: {
+                            records: JSON.parse(JSON.stringify(breakObj))
+                        }
+                    })
+                }
+            });
+            </script>
+        </div>
+
+    </div>
+
+    <div class="combinedPriceDiv", style="display: block;">
+        <div class="combinedPriceTopPart">
+        <span class="drugPriceSelection">
+            <a class="combinedPriceTopPartSelectedLink" href="#nowhere">Individual Drug Price</a>
+            <a class="selected" href="#nowhere">Combined Drug Price</a>
+        </span>
+            <span class="float-right">
+            {% if login_success == 'True' or register_success == 'True'%}
+            <a href="{{ url_for('main') }}">Start a new search</a>
+            {% else %}
+            <a href="{{ url_for('index') }}">Start a new search</a>
+            {% endif %}
+        </span>
+        </div>
+        <div id="combinedContent">
+            <h3>Total Price for: {{combined_drug_name}}</h3>
+            <table class="table table-striped" id="combinedTable">
+                <thead>
+                <th data-dynatable-column="name">Name</th>
+                <th data-dynatable-column="originalPrice">Original Price</th>
+                <th data-dynatable-column="withCoupon">With Coupon</th>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>FireRx</title>
+    <!--style of common section-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='med_history.css') }}" />
+    <style type="text/css">
+        #signupbutton {
+            position: center;
+            top: 60px;
+            left: 480px;
+            width: 200px;
+            padding: 8px;
+            border-color: black;
+            border-width: 2px;
+            border-style: solid;
+            background-color: gold;
+            border-radius: 10px 10px 10px 10px;
+            font-size: 16px;
+            text-align: center;
+            font-weight: bold;
+        }
+        p{
+            padding:5px;
+        }
+
+/* Pen-specific styles */
+* {
+  box-sizing: border-box;
+}
+
+article {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+/* Pattern styles */
+div {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+
+.left-half {
+  background: paleGreen;
+  height:100%;
+  border-right: 1px solid black;
+  border-top-left-radius:25px;
+  border-bottom-left-radius:25px;
+  color:DodgerBlue;
+}
+
+.right-half {
+  background: PaleGreen;
+  height:100%;
+  border-left: 1px solid black;
+  border-top-right-radius:25px;
+  border-bottom-right-radius:25px;
+  color:black;
+}
+
+.sign_login_button{
+    position:absolute;
+    margin-top: -200px;
+    margin-left:-200px;
+}
+
+.login_form_row{
+padding:5px 0px 0px 0px;
+}
+
+label.login_label{
+width:120px;
+float:left;
+padding:5px 5px 0px 5px;
+color:#000;
+text-align:right;
+font-size: 1.1em;
+}
+
+#Sign_Up_Rx{
+    position: left;
+    text-align:left;
+    margin:20px 0 0px 50px;
+}
+
+#features{
+    margin-top: -200px;
+    width:70%;
+    text-align: right;
+}
+
+#Sign_in_link{
+    position: right;
+    text-align:right;
+    margin:20px 50px 0px 0px;
+}
+
+input{
+    margin-top:5px;
+    height:40px;
+}
+    </style>
+</head>
+<body>
+    <!--banner-->
+    <header>
+        <h1><strong>FireRx</strong></h1>
+         <section style="text-align:right; font-size:0.6em;">
+                <span >
+                        <a href="{{ url_for('index') }}" >Back to Home</a>
+                </span>
+        </section>
+    </header>
+    <div class="gap">
+    </div>
+    <nav>
+        <div class="left-half">
+                <h4 id="Sign_Up_Rx">Sign Up for My Rx</h4>
+                <article>
+                  <div id="features" style="margin-left:100px;">
+                  <h1 style="text-align:left; margin-bottom:50px;"> Major Features</h1>
+                  <p style="text-align:left;">&#10004; Compare drug price along different discount programs</p>
+                  <p style="text-align:left;">&#10004; Run a search across multiple meds with sortable results</p>
+                  <p style="text-align:left;">&#10004; Create your own account to keep track of meds</p>
+                  </div>
+                </article>
+              </div><div class="right-half">
+              <h5 id="Sign_in_link">Already a member?  <a href="{{ url_for('login') }}">Sign in</a></h5>
+              <article>
+                    <form action="{{ url_for('registration') }}" method="post" enctype="multipart/form-data" style="margin-top:0px; width:100%;">
+                        {{ form.hidden_tag() }}
+
+                        <div class="login_form_row">
+                        {{ form.email(size=32, placeholder='Email') }} <br>{% for error in form.email.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+
+                        </div>
+
+                        <div class="login_form_row">
+                        {{ form.first_name(size=32, placeholder='First Name') }} <br>
+                            {% for error in form.first_name.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                        </div>
+
+                        <div class="login_form_row">
+                        {{ form.middle_name(size=32, placeholder='Middle Name') }} <br>
+                            {% for error in form.middle_name.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                        </div>
+
+                        <div class="login_form_row">
+                        {{ form.last_name(size=32, placeholder='Last Name') }} <br>
+                            {% for error in form.last_name.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                        </div>
+
+                        <div class="login_form_row">
+                        {{ form.birthday(size=32, placeholder='Birthday (e.g. yyyy-mm-dd)') }}<br>
+                        {% for error in form.birthday.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                        </div>
+
+                        <div class="login_form_row">
+                         {{ form.fhir_id(size=32, placeholder='FHIR patient ID') }}<br>
+                             {% for error in form.fhir_id.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                        </div>
+
+                        <div class="login_form_row">
+                        {{ form.password(size=32, placeholder='Password') }}<br>
+                        {% for error in form.password.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                        </div>
+
+                        <div class="login_form_row">
+                        {{ form.re_password(size=32, placeholder='Retype Password') }}<br>
+                        {% for error in form.re_password.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                        </div>
+
+                <form/>
+                    <div style="margin-top:50px;" class="signup">
+                         <input type="submit" id="signupbutton" value="Sign Up" />
+                    </div>
+            </article>
+       </div>
+    </nav>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>

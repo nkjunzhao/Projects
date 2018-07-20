@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>FireRx</title>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+    $('document').ready(function(){
+      // var data = {{account_response['first_name']}}
+      // console.log(data)
+      $('#firstName').append( '<span>'+ '{{account_response['first_name']}}' + '</span>');
+      $('#middleName').append( '<span>'+ '{{account_response['middle_name']}}' + '</span>');
+      $('#lastName').append( '<span>'+ '{{account_response['last_name']}}' + '</span>');
+      $('#birthday').append( '<span>'+ '{{account_response['birthday']}}' + '</span>');
+      $('#email').append( '<span>'+ '{{account_response['email']}}' + '</span>');
+      $('#fhirID').append( '<span>'+ '{{account_response['fhir_id']}}' + '</span>');
+    });
+    </script>
+    <!--style of common section-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}" />
+    <style type="text/css">
+        /*style of account information*/
+        section {
+            background-color: whitesmoke;
+            position: absolute;
+            top: 340px;
+            left: 228px;
+            height: 580px;
+            width: 1000px;
+            text-align: left;
+        }
+        section > p {
+            padding-top: 10px;
+            padding-left: 50px;
+            padding-bottom: 10px;
+            font-size:20px;
+        }
+        /*style of account tab*/
+        #account {
+            background-color: darkgrey;
+        }
+        #profiletab {
+            background-color: whitesmoke;
+        }
+    </style>
+</head>
+
+<body>
+    <!--banner-->
+    <header>
+        <h1><strong>FireRx</strong></h1>
+        <div style="text-align:right; font-size:0.6em;">
+            <span>Welcome {{ account_response['fullname'] }} ! <a  href="{{ url_for('index') }}" style="margin-left:30px;">Logout</a></span>
+
+        </div>
+    </header>
+
+    <div class="gap">
+        <p></p>
+    </div>
+
+    <!--main part of information-->
+    <nav>
+        <!-- Tab links -->
+        <div class="tab">
+            <button class="tablinks" id="search">Search</button>
+            <button class="tablinks" id="account">Account</button>
+            <button class="tablinks" id="med_history">Med History</button>
+        </div>
+
+        <!--Subtab links-->
+        <div class="subtab">
+            <button class="tablinks" id="profiletab">Basic Information</button>
+            <button class="tablinks" id="recordtab">Search History</button>
+        </div>
+
+    </nav>
+    <!--profile information-->
+    <section id="user">
+        <p id="firstName"> First Name:</p>
+        <p id="middleName"> Middle Name:</p>
+        <p id="lastName"> Last Name:</p>
+        <p id="birthday"> Birthday:</p>
+        <p id="email"> Email Address: </p>
+        <p id="fhirID"> FHIR Patient ID:</p>
+    </section>
+
+    <script type="text/javascript">
+        document.getElementById("recordtab").onclick = function() {
+            location.href = "{{ url_for('history') }}";
+        };
+        document.getElementById("med_history").onclick = function() {
+            location.href = "{{ url_for('med_history') }}";
+        };
+        document.getElementById("search").onclick = function() {
+            location.href = "{{ url_for('main') }}";
+        };
+    </script>
+</body>
+</html>

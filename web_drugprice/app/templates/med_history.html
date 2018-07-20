@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>FireRx</title>
+
+    <!--style of common section-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='med_history.css') }}" />
+
+
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <style type="text/css">
+        #med_history {
+            background-color: darkgray;
+        }
+
+        .searchbar>p {
+            position: relative;
+            top: 50px;
+            left: 250px;
+            font-size: 20px;
+
+        }
+
+        #searchbox {
+            position: relative;
+            top: 40px;
+            left: 250px;
+            width: 500px;
+            height: 30px;
+            border-color: black;
+            border-width: 2px;
+            border-style: solid;
+            font-size: 15px;
+            border-radius: 10px 10px 10px 10px;
+            text-indent: 10px;
+			z-index:1;
+        }
+
+        #searchbutton {
+            position: relative;
+            top: 40px;
+            left: 260px;
+            width: 100px;
+            padding: 8px;
+            border-color: black;
+            border-width: 2px;
+            border-style: solid;
+            background-color: lightgrey;
+            border-radius: 10px 10px 10px 10px;
+            font-size: 16px;
+            text-align: center;
+            font-weight: bold;
+			z-index:1;
+        }
+
+
+        .text {
+            position: absolute;
+            padding-top: 120px;
+			padding-left:300px;
+			z-index:0;
+
+        }
+
+
+        #gap{
+            margin-top:100px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!--banner-->
+    <header>
+        <h1><strong>FireRx</strong></h1>
+
+        <div style="text-align:right; font-size:0.6em;">
+            <span>Welcome {{ fullname }} ! <a  href="{{ url_for('index') }}" style="margin-left:30px;">Logout</a></span>
+
+        </div>
+
+    </header>
+
+    <div class="gap">
+        <p></p>
+    </div>
+
+    <!--main part of information-->
+    <nav>
+        <!-- Tab links -->
+        <div class="tab">
+            <button class="tablinks" id="search">Search</button>
+            <button class="tablinks" id="account">Account</button>
+            <button class="tablinks" id="med_history">Med History</button>
+        </div>
+        <div id="gap">
+        <div style="overflow:scroll;height:500px;width:100%;overflow:auto">
+            <table class="table table-striped" id="med_history_table">
+                <thead>
+                <th data-dynatable-column="Medication" data-dynatable-no-sort="true">Medication</th>
+                <th data-dynatable-column="Status">Status</th>
+                <th data-dynatable-column="DosageAndUsage">Dosage And Usage</th>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </nav>
+
+    <script type="text/javascript">
+        document.getElementById("account").onclick = function() {
+            location.href = "{{ url_for('account') }}";
+        };
+        document.getElementById("search").onclick = function() {
+            location.href = "{{ url_for('main') }}";
+        };
+    </script>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/static/jspkg-archive/jquery.dynatable.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready( function() {
+        $('#med_history_table').dynatable({
+            features: {
+                paginate: false,
+                search: false,
+                recordCount: false
+            },
+            table: {
+                defaultColumnIdStyle: 'lowercase'
+            },
+            dataset: {
+                records: {{ med_history_list | safe }}
+            }
+        })
+
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+
+body {
+    background-color: Palegreen;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+header {
+    background-color: white;
+    padding: 25px;
+    text-align: center;
+    font-size: 25px;
+    border-radius: 10px 10px 10px 10px;
+
+}
+
+header > p {
+    font-size: 16px;
+    position: absolute;
+    top: 135px;
+    left: 10px;
+}
+
+
+div.bottomFrame {
+    background-color: white;
+    padding-top: 10px;
+}
+
+a {
+    margin:0px 10px 0px 10px;
+    padding: 5px
+}
+
+a.selected {
+    background-color:#CCC;
+    border-left: 1px solid #cfbfb1;
+    border-right: 1px solid #cfbfb1;
+}
+
+individualPriceDiv {
+    margin: 10px 25px 10px 15px;
+    display: block
+}
+
+individualPriceTopPartSelectedLink {
+    padding: 0px 50px 0px 0px;
+}
+
+h3 {
+    text-align: center;
+    padding-top: 10px;
+}
+
+
+

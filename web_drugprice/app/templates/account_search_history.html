@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>FireRx</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+
+    <script>
+        $('document').ready(function(){
+          var history_list = {{history_list | safe}}
+          $.each(history_list, function(k, v) {
+              var tbl = "<tr>" + "<td>" + v.medication + "</td>" + "<td>" + v.date + "</td>" +
+                  "<td>" + v.price + "</td>" + "<td>" + v.store + "</td>" + "</tr>"
+              $(tbl).appendTo("#history tbody");
+          });
+        });
+    </script>
+
+
+    <!--style of common section-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}" />
+
+    <style type="text/css">
+        /*style of account information*/
+        section {
+            background-color: whitesmoke;
+            position: absolute;
+            top: 340px;
+            left: 228px;
+            height: 580px;
+            width: 1000px;
+            text-align: left;
+        }
+        #account {
+            background-color: darkgrey;
+        }
+        /*style of history tab*/
+        #recordtab {
+            background-color: whitesmoke;
+        }
+        section table {
+            position: relative;
+            border-color: black;
+            border-width: 3px;
+            border-style: solid;
+            margin: 80px;
+            border-radius: 5px 5px 5px 5px;
+        }
+        section th {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 80px;
+            padding-right: 80px;
+            width: auto;
+        }
+        section td {
+            font-size: 16px;
+            padding: 8px;
+            text-align: center
+        }
+        section tr:nth-child(even) {
+            background-color: lightgrey;
+        }
+        section thead {
+            background: #696969;
+            background: -moz-linear-gradient(top, #8e8e8e 0%, #787878 66%, #696969 100%);
+            background: -webkit-linear-gradient(top, #8e8e8e 0%, #787878 66%, #696969 100%);
+            background: linear-gradient(to bottom, #8e8e8e 0%, #787878 66%, #696969 100%);
+            border-bottom: 3px solid #000000;
+        }
+        section thead th {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!--banner-->
+    <header>
+        <h1><strong>FireRx</strong></h1>
+        <div style="text-align:right; font-size:0.6em;">
+            <span>Welcome {{ fullname}} ! <a  href="{{ url_for('index') }}" style="margin-left:30px;">Logout</a></span>
+        </div>
+        <!-- <p id="message">Welcome</p>
+        <button class="signoutbutton">Sign out</button>
+        -->
+    </header>
+
+    <div class="gap">
+        <p></p>
+    </div>
+
+    <!--main part of information-->
+    <nav>
+        <!-- Tab links -->
+        <div class="tab">
+            <button class="tablinks" id="search">Search</button>
+            <button class="tablinks" id="account">Account</button>
+            <button class="tablinks" id="med_history">Med History</button>
+        </div>
+
+        <!--Subtab links-->
+        <div class="subtab">
+            <button class="tablinks" id="profiletab">Basic Information</button>
+            <button class="tablinks" id="recordtab">Search History</button>
+        </div>
+    </nav>
+
+    <!--Search history from users-->
+    <section style="overflow:auto;">
+        <table id="history">
+            <thead>
+                <tr>
+                    <th>Searched Medication</th>
+                    <th>Date</th>
+                    <th>Best Price</th>
+                    <th>Store</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            </tbody>
+        </table>
+    </section>
+
+    <script type="text/javascript">
+        document.getElementById("profiletab").onclick = function() {
+            location.href = "{{ url_for('account') }}";
+        };
+        document.getElementById("med_history").onclick = function() {
+            location.href = "{{ url_for('med_history') }}";
+        };
+        document.getElementById("search").onclick = function() {
+            location.href = "{{ url_for('main') }}";
+        };
+    </script>
+
+</body>
+
+</html>

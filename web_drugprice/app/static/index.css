@@ -1,0 +1,89 @@
+        body {
+            background-color: PaleGreen ;
+        }
+
+
+        header {
+            background-color: white;
+            padding: 25px;
+            text-align: center;
+            font-size: 25px;
+            border-radius: 10px 10px 10px 10px;
+
+        }
+
+        header > p {
+            font-size: 16px;
+            position: absolute;
+            top: 135px;
+            left: 1000px;
+        }
+
+        .signoutbutton {
+            font-size: 14px;
+            position: absolute;
+            top: 150px;
+            left: 1200px;
+            border: none;
+        }
+
+
+        nav {
+            background-color: white;
+            padding: 50px;
+            text-align: center;
+            height: 850px;
+            border-radius: 10px 10px 10px 10px;
+        }
+
+        .tab {
+            overflow: hidden;
+            background-color: white;
+        }
+
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            padding: 16px 16px;
+            font-size: 15px;
+        }
+
+        .tab button:hover {
+            background-color: lightgray;
+        }
+
+        .tab button.active {
+            background-color: lightgray;
+        }
+
+        .subtab {
+            float: left;
+            position: relative;
+            top: 50px;
+            left: 20px;
+            background-color: white;
+        }
+
+        .subtab button {
+            display: block;
+            background-color: inherit;
+            color: black;
+            padding: 22px 16px;
+            width: 100%;
+            border: none;
+            outline: none;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 15px;
+        }
+
+        .subtab button:hover {
+            background-color: lightgray;
+        }
+
+        .subtab button.active {
+            background-color: lightgray;
+        }

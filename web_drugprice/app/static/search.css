@@ -1,0 +1,137 @@
+.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+.autocomplete-group { padding: 2px 5px; }
+.autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
+
+#search {
+    background-color: darkgrey;
+}
+.title {
+    text-align: center;
+    font-size: 20px;
+    color:MediumBlue;
+}
+#searchbox {
+    width: 500px;
+    height: 34px;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    font-size: 15px;
+    border-radius: 10px 10px 10px 10px;
+    text-indent: 10px;
+    z-index: 2;
+    margin-right: 20px;
+}
+#searchbutton,
+.addbtn {
+    width: 80px;
+    padding: 10px;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    background-color: Gold;
+    border-radius: 10px 10px 10px 10px;
+    font-size: 16px;
+    color:black;
+    text-align: center;
+    font-weight: bold;
+    z-index: 2;
+}
+.addbtn1 {
+    width: 200px;
+    padding: 10px;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    background-color: Gold;
+    border-radius: 10px 10px 10px 10px;
+    font-size: 16px;
+    color:black;
+    text-align: center;
+    font-weight: bold;
+    z-index: 2;
+}
+#pricebutton {
+    position: relative;
+    top: 20px;
+    width: 200px;
+}
+.part1 {
+    width: 800px;
+    margin: 0 auto;
+    padding-top: 80px;
+    padding-left: 100px;
+    text-align: left;
+    color:DodgerBlue;
+    font-size:20px;
+
+}
+.part2 {
+    width: 900px;
+    margin: 0 auto;
+    padding-top: 50px;
+    text-align: center;
+}
+.part3 {
+    width: 1000px;
+    height: 500px;
+    margin: 0 auto;
+    padding-top: 30px;
+    text-align: left;
+}
+.dropdown1,
+.dropdown2,
+.dropdown3 {
+    display: inline-block;
+    margin-right: 30px;
+    color: #000;
+    font-weight: bold;
+}
+.part2 select {
+    border: 2px solid #333;
+    height: 30px;
+}
+.part3 ul {
+    position: relative;
+    top: 10px;
+    left: 120px;
+    width: 800px;
+    height: 200px;
+}
+/* Style the list items */
+.part3 ul li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    background-color: lightgrey;
+    font-size: 16px;
+    transition: 0.2s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    list-style-type: none;
+}
+/* Set all odd list items to a different color (zebra-stripes) */
+.part3 ul li:nth-child(odd) {
+    background-color: whitesmoke;
+}
+/* Darker background-color on hover */
+.part3 ul li:hover {
+    background-color: darkgrey;
+}
+.part3 .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+}
+.part3 .findprice {
+    position: relative;
+    top: auto;
+    text-align: center;
+    padding-top: 20px
+}

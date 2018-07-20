@@ -1,0 +1,13 @@
+version: '2'
+services:
+  hhacker-mysql:
+    build: app/db
+    restart: always
+  hhacker-app:
+    depends_on:
+      - hhacker-mysql
+    build: .
+    ports:
+     - "5000:5000"
+    links:
+      - hhacker-mysql

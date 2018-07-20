@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>FireRx</title>
+    <!--style of common section-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='search.css') }}" />
+
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='jquery.autocomplete.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <h1><strong>FireRx</strong></h1>
+        {% if login_success == 'True' or register_success == 'True'%}
+        <div style="text-align:right; font-size:0.6em;">
+            <span>Welcome {{ fullname }} ! <a  href="{{ url_for('index') }}" style="margin-left:30px;">Logout</a></span>
+        </div>
+        {% else %}
+        <div style="text-align:right; font-size:0.6em;">
+            <a href="{{ url_for('login') }}" style="margin-right:10px;">Login</a>
+            <a href="{{ url_for('registration')}}">Register </a>
+        </div>
+        {% endif %}
+    </header>
+    <div class="gap">
+        <p></p>
+    </div>
+
+    <main class="main">
+        <nav>
+            {% if login_success == 'True' or register_success == 'True'%}
+            <div class="tab">
+                <button class="tablinks current" id="search">Search</button>
+                <button class="tablinks" id="account">Account</button>
+                <button class="tablinks" id="medhistory">Med History</button>
+            </div>
+            {% endif %}
+            <div class="searchbar">
+                <p class="title"> <strong>Find the lowest price for your prescriptions</strong></p>
+                <div class="search_box">
+                    <input type="text" id="searchbox" placeholder="Type your drug name (like aspirin, terbinafine, etc)" />
+                    <input type="submit" id="searchbutton" value="Search"  class="addbtn" />
+                </div>
+            </div>
+            <div class="part1">
+                <div class="text">
+                    <p> <strong>Major Features:</strong></p>
+                    <p> * Compare drug price along different discount programs</p>
+                    <p> * Run a search across multiple meds with sortable results</p>
+                    <p> * Create your own account to keep track of meds </p>
+                </div>
+            </div>
+            <div class="part2" style="display:none">
+                <div class="dropdown1">
+                    Select Form
+                    <select name="Drug" id="box_drug" onChange="changeDosageResetQuantity(this.selectedIndex);"><option></option></select>
+                </div>
+                <div class="dropdown2">
+                    Select Dosage
+                    <select name="Dosage" id="box_dosage" onChange="changeQuantity(this.selectedIndex);"><option></option></select>
+                </div>
+                <div class="dropdown3">
+                    Select Quantity
+                    <select name="Quantity" id="box_quantity"><option></option></select>
+                </div>
+                <button onclick="newElement()" id="addbutton" class="addbtn">Add</button>
+            </div>
+            <div style="display:none" class="part3">
+                <ul id="list" , style="overflow:auto;"></ul>
+                <div class="findprice">
+                    <input type="submit" id="find_lowest_price" value="Find the lowest price" class="addbtn1" />
+                </div>
+            </div>
+        </nav>
+    </main>
+
+    <script type="text/javascript">
+        var key = {}
+        var search_list = [];
+        // Create a "close" button and append it to each list item
+        var myNodelist = document.getElementsByTagName("LI");
+        var i;
+        for (i = 0; i < myNodelist.length; i++) {
+            var span = document.createElement("SPAN");
+            var txt = document.createTextNode("\u00D7");
+            span.className = "close";
+            span.appendChild(txt);
+            myNodelist[i].appendChild(span);
+        }
+        // Click on a close button to hide the current list item
+        var close = document.getElementsByClassName("close");
+        var i;
+        for (i = 0; i < close.length; i++) {
+            close[i].onclick = function() {
+                var div = this.parentElement;
+                div.style.display = "none";
+            }
+        }
+        // Create a new list item when clicking on the "Search" button
+
+        function newElement() {
+            var li = document.createElement("li");
+            var inputValue = document.getElementById("searchbox").value;
+            var input_drug = document.getElementById("box_drug").value;
+            var input_dosage = document.getElementById("box_dosage").value;
+            var input_quantity = document.getElementById("box_quantity").value;
+
+            if(input_drug=="" || input_dosage=="" || input_quantity=="") {
+                alert("Oops! It seems you forget to select something!");
+                return;
+            }
+            var item = {}
+            item['drug_name'] = inputValue;
+            item['form_type'] = input_drug;
+            item['dosage_value'] = input_dosage;
+            item['quantity_value'] = input_quantity;
+            search_list.push(item);
+            inputValue = inputValue + ' ' + input_drug + ' ' + input_dosage + ' ' + input_quantity;
+            var t = document.createTextNode(inputValue);
+            li.appendChild(t);
+            if (inputValue === '') {
+                alert("You need to add a drug name!");
+                return;
+            } else {
+                $(".part3").css("display", "block")
+                document.getElementById("list").appendChild(li);
+            }
+            document.getElementById("searchbox").value = "";
+            var span = document.createElement("SPAN");
+            var txt = document.createTextNode("\u00D7");
+            span.className = "close";
+            span.appendChild(txt);
+            li.appendChild(span);
+            for (i = 0; i < close.length; i++) {
+                close[i].onclick = function() {
+                    console.log("search list before remove = " + "index = " + i)
+                    console.log(search_list)
+                    search_list.splice(i-1, 1)
+                    console.log("search list after remove = ")
+                    console.log(search_list)
+                    var div = this.parentElement;
+                    div.parentNode.removeChild(div);
+                }
+            }
+            console.log("Reset UI")
+            console.log("search_list = ")
+            console.log(search_list)
+            $(".part2").css("display", "None");
+        }
+        $('#searchbox').autocomplete({
+            lookup: function (query, done) {
+              var result = {}
+              result['suggestions'] = []
+              key['drug_name'] = query;
+              key['type'] = 'getDrugNames';
+              request = $.ajax({
+                               url: "{{ url_for('search') }}",
+                               method: 'POST',
+                               data: {'key': JSON.stringify(key)}, // send the id/p_code as an object and grab it in your PHP script.
+                               dataType: 'json'
+                           });
+                request.done(function (response){
+                  $.each(response.data, function(k, v) {
+                      result['suggestions'][k] = {"value" : v['drug_name']}
+                  })
+                  $(".part1").css("display", "none");
+                  done(result);
+                })
+        }});
+        $('document').ready(function() {
+            $('#searchbutton').click(function() {
+                key = {}
+                if ($('#searchbox').val().length == 0) alert("Please enter a valid entry");
+                else {
+                  $('#box_quantity').children('option:not(:first)').remove();
+                  $('#box_drug').children('option:not(:first)').remove();
+                  $('#box_dosage').children('option:not(:first)').remove();
+                  key['drug_name'] = $('#searchbox').val();
+                  key['type'] = 'getFormTypes';
+                  $.post("{{ url_for('search') }}", {
+                      key: JSON.stringify(key)
+                  }, function(response) {
+                      console.log("The response from the server is: -------")
+                      console.log(response)
+                      if (response.data.length == 0) alert("Sorry, we don't have information for this medication!");
+                      else {
+                          $(".part1").css("display", "none");
+                          $(".part2").css("display", "block");
+                          $.each(response.data, function(k, v) {
+                              $('#box_drug').append($('<option>', {
+                                  value: v.form_type,
+                                  text: v.form_type,
+                              }));
+                          })
+                      }
+                  });
+                }
+            })})
+            document.getElementById("box_dosage").onchange = function() {
+              $('#box_quantity').children('option:not(:first)').remove();
+              key['dosage_value'] = this.value;
+              key['type'] = 'getQuantityValues';
+              console.log("Dosage select changed --- ")
+              console.log(key)
+              $.post("{{ url_for('search') }}", {
+                  key: JSON.stringify(key)
+              }, function(response) {
+                  console.log("The response from the server is: -------")
+                  console.log(response)
+                  $.each(response.data, function(k, v) {
+                      $('#box_quantity').append($('<option>', {
+                          value: v.quantity_value,
+                          text: v.quantity_value,
+                      }));
+                  })
+              });
+            }
+        document.getElementById("box_drug").onchange = function() {
+            // drugForm = this.value;
+            $('#box_dosage').children('option:not(:first)').remove();
+            $('#box_quantity').children('option:not(:first)').remove();
+            key['form_type'] = this.value;
+            key['type'] = 'getDosageValues';
+            console.log("Form select changed --- ")
+            console.log(key)
+            $.post("{{ url_for('search') }}", {
+                key: JSON.stringify(key)
+            }, function(response) {
+                console.log("The response from the server is: -------")
+                console.log(response)
+                $.each(response.data, function(k, v) {
+                    $('#box_dosage').append($('<option>', {
+                        value: v.dosage_value,
+                        text: v.dosage_value,
+                    }));
+                })
+            });
+        }
+        $('document').ready(function() {
+            $('#find_lowest_price').click(function() {
+                $.post("{{url_for('find_lowest_price')}}", {
+                    search_list: JSON.stringify(search_list)
+                }, function(response) {
+                    console.log("The response from the server is: -------")
+                    console.log(response)
+                    location.href = "{{ url_for('search_result') }}";
+                });
+        })
+      })
+      document.getElementById("medhistory").onclick = function() {
+          location.href = "{{ url_for('med_history') }}";
+      }
+      document.getElementById("account").onclick = function() {
+          location.href = "{{ url_for('account') }}";
+      }
+
+    </script>
+</body>
+</html>
