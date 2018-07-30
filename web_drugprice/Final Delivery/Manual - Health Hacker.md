@@ -63,16 +63,16 @@ User can search the drug without login required.
 ### Example
 
 Figure 1:
-![alt text](https://github.com/nkjunzhao/Projects/tree/master/web_drugprice/Final%20Delivery/images/Figure1.png)
+![alt text](https://github.com/nkjunzhao/Projects/blob/master/web_drugprice/Final%20Delivery/images/Figure1.png)
 
 Figure 2:
-![alt text](https://github.com/nkjunzhao/Projects/tree/master/web_drugprice/Final%20Delivery/images/Figure2.png)
+![alt text](https://github.com/nkjunzhao/Projects/blob/master/web_drugprice/Final%20Delivery/images/Figure2.png)
 
 Figure 3:
-![alt text](https://github.com/nkjunzhao/Projects/tree/master/web_drugprice/Final%20Delivery/images/Figure3.png)
+![alt text](https://github.com/nkjunzhao/Projects/blob/master/web_drugprice/Final%20Delivery/images/Figure3.png)
 
 Figure 4:
-![alt text](https://github.com/nkjunzhao/Projects/tree/master/web_drugprice/Final%20Delivery/images/Figure4.png)
+![alt text](https://github.com/nkjunzhao/Projects/blob/master/web_drugprice/Final%20Delivery/images/Figure4.png)
 
 ## Search Results (no login)
 If user searches for multiple drug prices, the search results will show separate drug prices from different stores and discounted drug prices. In addition, it also shows the combined price of drugs. The tab “Individual drug price” shows separate drug prices and the tab “Combined drug price” shows the summed price of drug from each store.
@@ -83,10 +83,10 @@ If user searches for multiple drug prices, the search results will show separate
 #### Example 
 
 Figure 5:
-![alt text](https://github.com/nkjunzhao/Projects/tree/master/web_drugprice/Final%20Delivery/images/Figure5.png)
+![alt text](https://github.com/nkjunzhao/Projects/blob/master/web_drugprice/Final%20Delivery/images/Figure5.png)
 
 Figure 6:
-![alt text](https://github.com/nkjunzhao/Projects/tree/master/web_drugprice/Final%20Delivery/images/Figure6.png)
+![alt text](https://github.com/nkjunzhao/Projects/blob/master/web_drugprice/Final%20Delivery/images/Figure6.png)
 
 ### Combined drug price
 #### Steps
@@ -95,10 +95,10 @@ Figure 6:
 #### Example 
 
 Figure 7:
-![alt text](https://github.com/nkjunzhao/Projects/tree/master/web_drugprice/Final%20Delivery/images/Figure7.png)
+![alt text](https://github.com/nkjunzhao/Projects/blob/master/web_drugprice/Final%20Delivery/images/Figure7.png)
 
 Figure 8:
-![alt text](https://github.com/nkjunzhao/Projects/tree/master/web_drugprice/Final%20Delivery/images/Figure8.png)
+![alt text](https://github.com/nkjunzhao/Projects/blob/master/web_drugprice/Final%20Delivery/images/Figure8.png)
 
 ## Register
 User can sign up to enjoy more services from this app. Once user signs up and logs in, he/she will be able to see his/her own basic information, searched meds history, and medication history.
@@ -114,7 +114,7 @@ User can sign up to enjoy more services from this app. Once user signs up and lo
 ### Example 
 
 Figure 9:
-![alt text](https://github.com/nkjunzhao/Projects/tree/master/web_drugprice/Final%20Delivery/images/Figure9.png)
+![alt text](https://github.com/nkjunzhao/Projects/blob/master/web_drugprice/Final%20Delivery/images/Figure9.png)
 
 ## Log in
 ### Steps
@@ -126,17 +126,17 @@ Figure 9:
 ### Example 
 
 Figure 10:
-![alt text](https://github.com/nkjunzhao/Projects/tree/master/web_drugprice/Final%20Delivery/images/Figure10.png)
+![alt text](https://github.com/nkjunzhao/Projects/blob/master/web_drugprice/Final%20Delivery/images/Figure10.png)
 
 Figure 11:
-![alt text](https://github.com/nkjunzhao/Projects/tree/master/web_drugprice/Final%20Delivery/images/Figure11.png)
+![alt text](https://github.com/nkjunzhao/Projects/blob/master/web_drugprice/Final%20Delivery/images/Figure11.png)
 
 ## Search (logged in)
 The functionality of search with logged in is similar to the search without logged in. Please reference to the steps in section “Search (no login)”. The main difference is there are two more tabs “Account” and “Med History” that user can get access to (Figure 12).
 
 ### Example
 Figure 12:
-![alt text](https://github.com/nkjunzhao/Projects/tree/master/web_drugprice/Final%20Delivery/images/Figure12.png)
+![alt text](https://github.com/nkjunzhao/Projects/blob/master/web_drugprice/Final%20Delivery/images/Figure12.png)
 
 ## Search Results (logged in)
 The functionality of search results with logged in is similar to the search results without logged in. Please reference to the steps in section “Search (no login)”. The main difference is user can click “Back to the main menu” to be directed to search page with logged in.
@@ -151,7 +151,7 @@ Account contains two major parts. The default page is “Basic Information” wh
 #### Example 
 
 Figure 13:
-![alt text](https://github.com/nkjunzhao/Projects/tree/master/web_drugprice/Final%20Delivery/images/Figure13.png)
+![alt text](https://github.com/nkjunzhao/Projects/blob/master/web_drugprice/Final%20Delivery/images/Figure13.png)
 
 ### Searched Medications
 #### Steps
@@ -160,7 +160,7 @@ Figure 13:
 #### Example 
 
 Figure 14:
-![alt text](https://github.com/nkjunzhao/Projects/tree/master/web_drugprice/Final%20Delivery/images/Figure14.png)
+![alt text](https://github.com/nkjunzhao/Projects/blob/master/web_drugprice/Final%20Delivery/images/Figure14.png)
 
 ## Med History (logged in)
 ### Steps
@@ -171,4 +171,4 @@ Figure 14:
 #### Example
 
 Figure 15:
-![alt text](https://github.com/nkjunzhao/Projects/tree/master/web_drugprice/Final%20Delivery/images/Figure15.png)
+![alt text](https://github.com/nkjunzhao/Projects/blob/master/web_drugprice/Final%20Delivery/images/Figure15.png)
